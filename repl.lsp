@@ -1,5 +1,7 @@
 ;;; repl.lsp
+
 (in-package 3-proto-lisp)
+
 (defun read-normalize-print ()
   (declare (special *global*))
   (normalize (prompt&read)

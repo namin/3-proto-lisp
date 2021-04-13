@@ -41,7 +41,7 @@
   'handle)
 
 (defmethod print-to-string ((handle handle))
-  (if (eql (class-of handle) (find-class ’handle))
+  (if (eql (class-of handle) (find-class 'handle))
       (format nil "?~a" (print-to-string (cl-value handle)))
       (format nil "~s" (cl-value handle))))
 
