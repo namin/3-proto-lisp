@@ -1,0 +1,7 @@
+(load "config.lsp")
+(load "repl.lsp")
+(load "structural-field.lsp")
+(load "externalization.lsp")
+(load "internalization.lsp")
+(load "normalization.lsp")
+(load "primitives.lsp")
