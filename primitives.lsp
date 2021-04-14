@@ -41,6 +41,7 @@
 (set-primitive 'rest (function rest))
 ;; closure
 (set-primitive 'body (function body))
+(set-primitive 'set-body (lambda (self x) (setf (body self) x)))
 (set-primitive 'pattern (function argument-pattern))
 (set-primitive 'environment (function lexical-environment))
 (set-primitive 'ccons (function ccons))

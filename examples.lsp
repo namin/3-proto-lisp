@@ -21,3 +21,12 @@
                                (when ((down (binding (1st exp) env)) el)
                                  (cont el)))
                              (down list!))))))
+
+(set advise-before
+     (lambda (closure advice)
+       (set-body closure (pcons 'begin (rcons advice (body closure))))))
+
+(set foo (lambda (x) (+ x x)))
+(foo 5)
+(advise-before (up foo) '(print "foo called"))
+(foo 5)
