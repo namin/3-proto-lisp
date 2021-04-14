@@ -127,7 +127,7 @@
                (bind (lexical-environment non-reflective-closure)
                      (argument-pattern non-reflective-closure)
                      (wrap (make-instance 'wrapped-cl-list
-                                          :cl-list (list environment continuation arguments))))
+                                          :cl-list (list arguments environment continuation))))
                (create-meta-continuation))))
 
 (defun reduce-abnormal (procedure! arguments environment continuation)
@@ -136,6 +136,8 @@
     (lambda (reduce-lambda 'closure arguments environment continuation))
     (lambda-reflect (reduce-lambda 'reflective-closure arguments environment continuation))
     (if (reduce-if arguments environment continuation))
+    (begin (reduce-begin arguments environment continuation))
+    (quote (funcall continuation (internalize (first arguments))))
     (apply (reduce-apply arguments environment continuation))
     (apply-abnormal (reduce-apply-abnormal arguments environment continuation))))
 
@@ -163,6 +165,14 @@
                                 environment
                                 (lambda (antesequent!)
                                   (funcall continuation antesequent!))))))))
+
+(defun reduce-begin (arguments environment continuation)
+  (normalize (first arguments)
+             environment
+             (lambda (one!)
+               (if (empty-p (rest arguments))
+                   (funcall continuation one!)
+                   (reduce-begin (rest arguments) environment continuation)))))
 
 (defun reduce-lambda (closure-class-name arguments environment continuation)
   (let ((argument-pattern (first arguments))

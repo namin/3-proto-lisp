@@ -43,6 +43,9 @@
 (defmethod internalize ((handle handle))
   (make-instance 'handle :cl-value handle))
 
+(defmethod internalize ((handle string))
+  (make-instance 'handle :cl-value handle))
+
 (defmethod internalize ((number number))
   (make-instance 'numeral :cl-value number))
 

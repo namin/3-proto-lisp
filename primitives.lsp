@@ -29,6 +29,7 @@
 (set-primitive 'pcar (function pcar))
 (set-primitive 'pcdr (function pcdr))
 (set-primitive 'pcons (function pcons))
+(set-primitive 'pair-p (lambda (x) (cl->cl-bool (pair-p x))))
 ;; rails and sequences
 (set-primitive 'rcons (function rcons))
 (set-primitive 'scons (function scons))
@@ -37,6 +38,7 @@
 (set-primitive 'nth (function nth))
 (set-primitive 'tail (function tail))
 (set-primitive 'empty (lambda (rail) (cl->cl-bool (empty-p rail))))
+(set-primitive 'rest (function rest))
 ;; closure
 (set-primitive 'body (function body))
 (set-primitive 'pattern (function argument-pattern))
@@ -64,6 +66,12 @@
 (set-primitive-abnormal
  'if
  (lambda (&rest args) (declare (ignore args)) (error "Trying to call if")))
+(set-primitive-abnormal
+ 'begin
+ (lambda (&rest args) (declare (ignore args)) (error "Trying to call begin")))
+(set-primitive-abnormal
+ 'quote
+ (lambda (&rest args) (declare (ignore args)) (error "Trying to call quote")))
 (set-primitive-abnormal
  'apply
  (lambda (&rest args) (declare (ignore args)) (error "Trying to call apply")))
