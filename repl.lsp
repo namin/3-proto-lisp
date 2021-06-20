@@ -39,6 +39,6 @@
   (declare (special *global*))
   (let ((path (make-pathname :name filename-as-string)))
     (with-open-file (str path :direction :input)
-      (loop for line = (read str nil ’eof)
-            until (eql line ’eof)
+      (loop for line = (read str nil 'eof)
+            until (eql line 'eof)
             do (normalize (internalize line) *global* (lambda (result!) result!))))))
