@@ -4,7 +4,7 @@
 #+SBCL (:use common-lisp sb-mop)
 #-SBCL (:use common-lisp clos)
 (:shadow boolean atom length prep first rest nth body reduce)
-(:export read-normalize-print normalize-from-string)
+(:export read-normalize-print normalize-from-string repl)
 (:nicknames 3pl))
 
 #|

@@ -2,6 +2,11 @@
 
 (in-package 3-proto-lisp)
 
+(defun repl ()
+  (handler-case (read-normalize-print)
+    (end-of-file (c))))
+
+
 (defun read-normalize-print ()
   (declare (special *global*))
   (normalize (prompt&read)

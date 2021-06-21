@@ -1,5 +1,5 @@
 #!/bin/bash
 set -e
 
-sbcl --load load.lsp --eval '(cl:in-package 3-proto-lisp)' --eval "(sb-ext:save-lisp-and-die #p\"3pl\" :toplevel #'3pl:read-normalize-print :executable t)"
+sbcl --load load.lsp --eval '(cl:in-package 3-proto-lisp)' --eval "(sb-ext:save-lisp-and-die #p\"3pl\" :toplevel #'3pl:repl :executable t)"
 echo OK
