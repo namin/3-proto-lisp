@@ -4,20 +4,27 @@
 
 {% block content %}
 
-<div class="live" id="examples" data-lib="">
+<div class="live" id="lib_basics" data-lib="">
 (set not (lambda (x) (if x $F $T)))
 (set 1st (lambda (x) (nth 0 x)))
 (set 2nd (lambda (x) (nth 1 x)))
+</div>
 
+<div class="live" id="lib_when" data-lib="lib_basics">
 (set when
      (lambda-reflect
       (exp env cont)
       (normalize (pcons 'if (up [ (down (1st exp))
                                   (down (2nd exp))
                                   $F ])) env cont)))
+</div>
+
+<div class="live" id="ex_when" data-lib="lib_basics lib_when">
 (when $T 'hello)
 (when $F 'hello)
+</div>
 
+<div class="live" id="lib_search" data-lib="lib_basics lib_when">
 (set for-each
      (lambda (f lis)
        (when (not (empty lis))
@@ -32,8 +39,13 @@
                                (when ((down (binding (1st exp) env)) el)
                                  (cont el)))
                              (down list!))))))
-(search pair-p [1 '(2 3) 4])
+</div>
 
+<div class="live" id="ex_search" data-lib="lib_basics lib_when lib_search">
+(search pair-p [1 '(2 3) 4])
+</div>
+
+<div class="live" id="ex_advice" data-lib="">
 (set advise-before
      (lambda (closure advice)
        (set-body closure (pcons 'begin (rcons advice (body closure))))))
@@ -41,12 +53,11 @@
 (foo 5)
 (advise-before (up foo) '(print "foo called"))
 (foo 5)
-
 </div>
 
 <h2>Playground</h2>
 
-<div class="live" id="play" data-lib="">
+<div class="live" id="play" data-lib="lib_basics lib_when lib_search">
 
 
 
