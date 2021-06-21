@@ -1,7 +1,8 @@
 ;;; config.lsp
 
 (defpackage 3-proto-lisp
-(:use common-lisp clos)
+#+SBCL (:use common-lisp sb-mop)
+#-SBCL (:use common-lisp clos)
 (:shadow boolean atom length prep first rest nth body reduce)
 (:export read-normalize-print normalize-from-string)
 (:nicknames 3pl))
