@@ -1,0 +1,15 @@
+#!/bin/bash
+set -e
+
+mv $1 out.txt
+if [ -s $2 ]
+then
+    mv $2 extra.txt
+else
+    touch extra.txt
+fi
+cat extra.txt out.txt >script.txt
+
+cd make
+
+./3pl <../script.txt
