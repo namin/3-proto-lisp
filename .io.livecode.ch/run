@@ -10,4 +10,4 @@ else
 fi
 cat extra.txt out.txt >script.txt
 
-./3pl <../script.txt
+./3pl <script.txt
